@@ -1,13 +1,13 @@
 import { images } from "@/constants/images";
 import { Ionicons } from "@expo/vector-icons";
-import { Redirect, Tabs } from "expo-router";
+import { Redirect, router, Tabs } from "expo-router";
 import { Image, StatusBar, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 function TabIcon({ focused, name }: { focused: boolean; name: any }) {
   if (focused) {
     return (
-      <View className="flex flex-row w-full flex-1 min-w-[80px] min-h-14 mt-10 justify-center items-center rounded-full overflow-hidden bg-[#FFD700]">
+      <View className="flex flex-row w-full flex-1 min-w-20 min-h-14 mt-10 justify-center items-center rounded-full overflow-hidden bg-[#FFD700]">
         <Ionicons name={name} size={24} color="#151312" />
       </View>
     );
@@ -27,7 +27,8 @@ const tabConfig: Record<
   Users: { title: "Users", icon: "people-outline" },
   Tickets: { title: "Tickets", icon: "ticket-outline" },
   Properties: { title: "Properties", icon: "business-outline" },
-  Notifications: { title: "Notifications", icon: "notifications-outline" },
+  account: { title: "My Account", icon: "accessibility-outline" },
+  // notifications: { title: "Notifications", icon: "notifications-outline" },
 };
 
 export default function TabLayout() {
@@ -43,6 +44,7 @@ export default function TabLayout() {
       <StatusBar backgroundColor={"#FFD700"} barStyle="dark-content" />
       <Tabs
         screenOptions={({ route }) => {
+          const isNotifications = route.name === "notifications";
           const config = tabConfig[route.name];
           return {
             tabBarShowLabel: false,
@@ -58,6 +60,19 @@ export default function TabLayout() {
                 }}
               />
             ),
+            headerRight: () =>
+              !isNotifications && (
+                <TouchableOpacity
+                  className="mr-4"
+                  onPress={() => router.push("/notifications")}
+                >
+                  <Ionicons
+                    name="notifications-outline"
+                    size={24}
+                    color="#151312"
+                  />
+                </TouchableOpacity>
+              ),
             tabBarButton: (props: any) => (
               <TouchableOpacity activeOpacity={1} {...props} />
             ),
@@ -88,7 +103,14 @@ export default function TabLayout() {
         <Tabs.Screen name="Users" />
         <Tabs.Screen name="Tickets" />
         <Tabs.Screen name="Properties" />
-        <Tabs.Screen name="Notifications" />
+        <Tabs.Screen name="account" />
+        <Tabs.Screen
+          name="notifications"
+          options={{
+            href: null,
+            headerShown: true,
+          }}
+        />
       </Tabs>
     </>
   );

@@ -6,6 +6,13 @@ export default function UserDetail() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
 
+  const details = [
+    { label: "Role", value: "Admin" },
+    { label: "Status", value: "Active", valueColor: "text-green-600" },
+    { label: "Created", value: "Jan 15, 2025" },
+    { label: "Email", value: `test@email.com` },
+  ];
+
   return (
     <View className="flex-1 bg-white px-6 py-10">
       {/* Back button */}
@@ -38,21 +45,20 @@ export default function UserDetail() {
       </View>
 
       {/* User Info Section */}
-      <View className="mt-10 space-y-4">
-        <View className="flex-row items-center justify-between border-b border-gray-100 pb-3">
-          <Text className="text-gray-600">Role</Text>
-          <Text className="font-medium text-gray-900">Admin</Text>
-        </View>
-
-        <View className="flex-row items-center justify-between border-b border-gray-100 pb-3">
-          <Text className="text-gray-600">Status</Text>
-          <Text className="font-medium text-green-600">Active</Text>
-        </View>
-
-        <View className="flex-row items-center justify-between border-b border-gray-100 pb-3">
-          <Text className="text-gray-600">Created</Text>
-          <Text className="font-medium text-gray-900">Jan 15, 2025</Text>
-        </View>
+      <View className="mt-10 space-y-4 gap-6">
+        {details.map((detail) => (
+          <View
+            key={detail.label}
+            className="flex-row items-center justify-between border-b border-gray-100 pb-3"
+          >
+            <Text className="text-gray-600">{detail.label}</Text>
+            <Text
+              className={`font-medium ${detail.valueColor ?? "text-gray-900"}`}
+            >
+              {detail.value}
+            </Text>
+          </View>
+        ))}
       </View>
     </View>
   );

@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
-import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect } from "react";
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 
 // Dashboard menu
 const menuItems = [
@@ -51,6 +51,22 @@ const recentActions = [
 ];
 
 export default function Home() {
+  const [loading, setLoading] = React.useState(false);
+
+  useEffect(() => {
+    // Simulate loading
+    setLoading(true);
+    const timer = setTimeout(() => setLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-white">
+        <ActivityIndicator size="large" color="#2563EB" />
+      </View>
+    );
+  }
   return (
     <View className="flex-1 bg-gray-50 px-6 pt-10">
       {/* Header */}
