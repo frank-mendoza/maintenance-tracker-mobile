@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import {
+  ActivityIndicator,
   GestureResponderEvent,
   StyleProp,
   Text,
@@ -21,6 +22,7 @@ const Button = ({
   label,
   icon,
   style,
+  disabled,
   delay = 400, // default delay in ms
 }: {
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
@@ -28,6 +30,7 @@ const Button = ({
   icon?: React.ReactNode;
   style?: StyleProp<any>;
   delay?: number;
+  disabled?: boolean;
 }) => {
   const bounce = useSharedValue(0);
 
@@ -52,14 +55,19 @@ const Button = ({
 
   return (
     <AnimatedTouchable
+      disabled={disabled}
       style={[style, animatedStyle]}
       className="mt-2 w-full p-4 bg-[#FFD700] rounded-lg items-center border-gray-300"
       onPress={onPress}
-      activeOpacity={0.8}
+      // activeOpacity={0.8}
     >
-      <Text style={{ color: "#464646", fontSize: 16 }}>
-        {icon} {label}
-      </Text>
+      {disabled ? (
+        <ActivityIndicator size="small" color="#79797a" />
+      ) : (
+        <Text style={{ color: "#464646", fontSize: 16 }}>
+          {icon} {label}
+        </Text>
+      )}
     </AnimatedTouchable>
   );
 };

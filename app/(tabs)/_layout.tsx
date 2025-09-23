@@ -1,4 +1,5 @@
 import { images } from "@/constants/images";
+import { useAuthStore } from "@/lib/store/authStore";
 import { Ionicons } from "@expo/vector-icons";
 import { Redirect, router, Tabs } from "expo-router";
 import { Image, StatusBar, TouchableOpacity, View } from "react-native";
@@ -33,10 +34,10 @@ const tabConfig: Record<
 
 export default function TabLayout() {
   const insets = useSafeAreaInsets();
-  const isLogged = true; // Replace with auth logic
+  const { user } = useAuthStore();
 
-  if (!isLogged) {
-    return <Redirect href="/login" />;
+  if (!user) {
+    return <Redirect href="/(auth)/login" />;
   }
 
   return (

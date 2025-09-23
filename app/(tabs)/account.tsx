@@ -1,9 +1,9 @@
 import Button from "@/components/Button";
+import { useAuthStore } from "@/lib/store/authStore";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
 import {
-  Alert,
   Image,
   ScrollView,
   Text,
@@ -13,7 +13,8 @@ import {
 } from "react-native";
 
 const MyAccountScreen = () => {
-  const [email, setEmail] = useState("johndoe@email.com");
+  const { user, handleLogout, loading, setLoading } = useAuthStore();
+  const [email, setEmail] = useState(user?.email || "");
   const [avatar, setAvatar] = useState("https://i.pravatar.cc/150?img=12");
 
   const handlePickImage = async () => {
@@ -37,9 +38,9 @@ const MyAccountScreen = () => {
     }
   };
 
-  const handleSave = () => {
-    Alert.alert("Profile Updated", `New email: ${email}`);
-    // 🔗 here you can integrate API call to update user details
+  const handleSave = async () => {
+    setLoading(true);
+    await handleLogout();
   };
 
   const details = [
@@ -80,7 +81,7 @@ const MyAccountScreen = () => {
           </View>
         ))}
 
-        <Button label="Save Changes" onPress={handleSave} />
+        <Button label="Save Changes" onPress={handleSave} disabled={loading} />
       </View>
     </ScrollView>
   );
