@@ -8,6 +8,11 @@
     "scheme": "maintenanceapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "entryPoint": "./node_modules/expo-router/entry",
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "NEVER"
+    },
     "ios": {
       "supportsTablet": true,
       "infoPlist": {

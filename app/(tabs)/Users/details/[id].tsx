@@ -15,7 +15,6 @@ export default function UserDetail() {
 
   return (
     <View className="flex-1 bg-white px-6 py-10">
-      {/* Back button */}
       <View className=" justify-between items-center mb-6 flex-row">
         <TouchableOpacity
           onPress={() => router.back()}
@@ -32,7 +31,6 @@ export default function UserDetail() {
         </TouchableOpacity>
       </View>
 
-      {/* User Avatar */}
       <View className="items-center">
         <Image
           source={{
@@ -44,7 +42,6 @@ export default function UserDetail() {
         <Text className="text-gray-500 text-sm">user{id}@example.com</Text>
       </View>
 
-      {/* User Info Section */}
       <View className="mt-10 space-y-4 gap-6">
         {details.map((detail) => (
           <View

@@ -29,7 +29,6 @@ const tabConfig: Record<
   Tickets: { title: "Tickets", icon: "ticket-outline" },
   Properties: { title: "Properties", icon: "business-outline" },
   account: { title: "My Account", icon: "accessibility-outline" },
-  // notifications: { title: "Notifications", icon: "notifications-outline" },
 };
 
 export default function TabLayout() {
@@ -49,6 +48,7 @@ export default function TabLayout() {
           const config = tabConfig[route.name];
           return {
             tabBarShowLabel: false,
+            animation: "shift",
             headerTitle: "",
             headerLeft: () => (
               <Image

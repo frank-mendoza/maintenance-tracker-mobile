@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/lib/store/authStore";
-import { router, Stack } from "expo-router";
+import { Redirect, Stack } from "expo-router";
 import { StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -7,8 +7,7 @@ export default function AuthLayout() {
   const { user } = useAuthStore();
   const insets = useSafeAreaInsets();
   if (user) {
-    router.replace("/(tabs)");
-    return null;
+    return <Redirect href="/(tabs)" />;
   }
   return (
     <>

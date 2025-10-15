@@ -25,7 +25,6 @@ async function fetchUsers(page: number, pageSize: number) {
 export default function Users() {
   const renderItem = ({ item }: { item: any }) => (
     <TouchableOpacity
-      // activeOpacity={0.7}
       onPress={() =>
         router.push({
           pathname: "/(tabs)/Users/details/[id]",
@@ -34,22 +33,19 @@ export default function Users() {
       }
     >
       <View
-        className={`relative flex-row items-center bg-white px-4 py-3 gap-3 rounded-2xl shadow-sm`}
+        className={`flex-row items-center  bg-white p-4 rounded-2xl shadow-none`}
       >
-        {/* Avatar */}
         <View className="w-12 h-12 rounded-full bg-blue-100 items-center justify-center mr-4">
           <Text className="text-blue-600 font-semibold text-lg">
             {item.name.charAt(0)}
           </Text>
         </View>
 
-        {/* Info */}
         <View className="flex-1">
           <Text className="text-gray-900 font-medium">{item.name}</Text>
           <Text className="text-gray-500 text-sm">{item.email}</Text>
         </View>
 
-        {/* Action button */}
         <TouchableOpacity>
           <Ionicons name="chevron-forward-outline" size={20} color="#9CA3AF" />
         </TouchableOpacity>
@@ -67,7 +63,6 @@ export default function Users() {
         maxItems={100}
       />
 
-      {/* Floating Add Button */}
       <TouchableOpacity
         onPress={() => router.push("/(tabs)/Users/create")}
         className="absolute bottom-20 mb-5 right-6 bg-[#FFD700] rounded-full p-4 shadow-lg"

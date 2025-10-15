@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+import CustomButton from "@/components/CustomButton";
 import { images } from "@/constants/images";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useRouter } from "expo-router";
@@ -15,17 +15,17 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const LoginScreen = () => {
   const router = useRouter();
-  const { handleLogin, loading } = useAuthStore();
+  const { handleLogin, loading, setLoading } = useAuthStore();
   const [email, setEmail] = useState("fm.tenant@gmail.com");
   const [password, setPassword] = useState("12345678");
 
   const handleSubmit = async () => {
-    try {
-      await handleLogin(email, password);
-      router.replace("/(tabs)");
-    } catch (err) {
-      console.log("Login failed", err);
-    }
+    // try {
+    await handleLogin(email, password);
+    //   router.replace("/(tabs)");
+    // } catch (err) {
+    //   console.log("Login failed", err);
+    // }
   };
 
   const handleGoogleLogin = () => {
@@ -69,7 +69,11 @@ const LoginScreen = () => {
         secureTextEntry
         className="border border-gray-400 bg-white mb-2 p-4 rounded w-full"
       />
-      <Button label="Login" onPress={() => handleSubmit()} disabled={loading} />
+      <CustomButton
+        label="Login"
+        onPress={() => handleSubmit()}
+        disabled={loading}
+      />
       <Text className="my-5 text-md">Or login with</Text>
       <View
         style={{

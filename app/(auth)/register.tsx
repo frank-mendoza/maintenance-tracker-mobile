@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+import CustomButton from "@/components/CustomButton";
 import { images } from "@/constants/images";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -44,7 +44,7 @@ const RegistrationScreen = () => {
         secureTextEntry
         className="border border-gray-300 mb-2 p-4 rounded w-full"
       />
-      <Button label="Register" onPress={() => router.push("/")} />
+      <CustomButton label="Register" onPress={() => router.push("/")} />
 
       <Text
         className="absolute bottom-0"

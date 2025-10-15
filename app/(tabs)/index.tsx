@@ -69,7 +69,6 @@ export default function Home() {
   }
   return (
     <View className="flex-1 bg-gray-50 px-6 pt-10">
-      {/* Header */}
       <Text className="text-2xl font-bold text-gray-900 mb-6">
         Welcome to Maintenance Tracker
       </Text>
@@ -77,7 +76,6 @@ export default function Home() {
         Choose a section to manage your tasks:
       </Text>
 
-      {/* Dashboard Menu */}
       <View className="gap-4 mb-6">
         {menuItems.map((item) => (
           <Link key={item.title} href={item.route as any} asChild>
@@ -101,25 +99,6 @@ export default function Home() {
           </Link>
         ))}
       </View>
-
-      {/* Recent Actions */}
-      {/* <Text className="text-lg font-bold text-gray-900 mb-3">
-        Recent Actions
-      </Text>
-      <FlatList
-        data={recentActions}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View className="bg-white px-4 py-3 rounded-xl mb-3 shadow-sm">
-            <Text className="text-sm font-semibold text-blue-600">
-              {item.type}
-            </Text>
-            <Text className="text-gray-800 mt-1">{item.description}</Text>
-            <Text className="text-gray-400 text-xs mt-1">{item.time}</Text>
-          </View>
-        )}
-        showsVerticalScrollIndicator={false}
-      /> */}
     </View>
   );
 }

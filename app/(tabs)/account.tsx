@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+import CustomButton from "@/components/CustomButton";
 import { useAuthStore } from "@/lib/store/authStore";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
@@ -52,7 +52,6 @@ const MyAccountScreen = () => {
 
   return (
     <ScrollView className="flex-1 bg-white">
-      {/* Header */}
       <View className="items-center p-6 bg-[#FFD700] rounded-b-3xl">
         <TouchableOpacity onPress={handlePickImage} activeOpacity={0.7}>
           <Image
@@ -68,7 +67,6 @@ const MyAccountScreen = () => {
         <Text className="text-gray-700">{email}</Text>
       </View>
 
-      {/* Editable Fields */}
       <View className="mt-8 px-6 space-y-6 gap-6">
         {details.map((detail) => (
           <View key={detail.label}>
@@ -81,7 +79,11 @@ const MyAccountScreen = () => {
           </View>
         ))}
 
-        <Button label="Save Changes" onPress={handleSave} disabled={loading} />
+        <CustomButton
+          label="Save Changes"
+          onPress={handleSave}
+          disabled={loading}
+        />
       </View>
     </ScrollView>
   );

@@ -1,6 +1,6 @@
 import PaginatedList from "@/components/PaginatedList";
 import { Ionicons } from "@expo/vector-icons";
-import { Link } from "expo-router";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import Animated, { FadeInUp, FadeOutDown } from "react-native-reanimated";
@@ -47,9 +47,17 @@ export default function Properties() {
   };
 
   const renderItem = ({ item }: { item: any }) => (
-    <Link className="relative" href={`/user/${item.id}`}>
+    <TouchableOpacity
+      className="relative"
+      onPress={() =>
+        router.push({
+          pathname: "/(tabs)/Users/details/[id]",
+          params: { id: item.id },
+        })
+      }
+    >
       <View
-        className={`flex-row items-center my-3 bg-white px-4 py-3 rounded-2xl shadow-sm`}
+        className={`flex-row items-center  bg-white p-4 rounded-2xl shadow-none`}
       >
         {/* Avatar */}
         <View className="w-12 h-12 rounded-full bg-blue-100 items-center justify-center mr-4">
@@ -69,7 +77,7 @@ export default function Properties() {
           <Ionicons name="chevron-forward-outline" size={20} color="#9CA3AF" />
         </TouchableOpacity>
       </View>
-    </Link>
+    </TouchableOpacity>
   );
 
   const handleSaveUser = () => {
